@@ -1,3 +1,4 @@
 # Project exclude paths
 /target/
 Job4j_Forum.iml
+/.idea
