@@ -38,6 +38,6 @@ public class LoginControl {
         if (!pass) {
             return "redirect:/login?error=true";
         }
-        return "redirect:/index";
+        return "index";
     }
 }

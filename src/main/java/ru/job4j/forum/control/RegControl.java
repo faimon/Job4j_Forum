@@ -23,6 +23,6 @@ public class RegControl {
     @PostMapping("/reg")
     public String registration(@ModelAttribute User user) {
         userService.save(user);
-        return "redirect:/index";
+        return "index";
     }
 }

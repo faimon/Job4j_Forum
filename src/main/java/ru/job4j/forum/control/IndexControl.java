@@ -3,19 +3,19 @@ package ru.job4j.forum.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.job4j.forum.service.PostService;
+import ru.job4j.forum.service.TopicService;
 
 @Controller
 public class IndexControl {
-    private PostService postService;
+    private final TopicService topicService;
 
-    public IndexControl(PostService postService) {
-        this.postService = postService;
+    public IndexControl(TopicService topicService) {
+        this.topicService = topicService;
     }
 
     @GetMapping({"/", "/index"})
     public String index(Model model) {
-        model.addAttribute("posts", postService.getAll());
+        model.addAttribute("topics", topicService.getAllTopics());
         return "index";
     }
 }

@@ -12,7 +12,15 @@ public class PostService {
     private final List<Post> posts = new ArrayList<>();
 
     public PostService() {
-        posts.add(Post.of("Продаю машину ладу 01."));
+        posts.add(Post.of("Правила форума."));
+    }
+
+    public void addPost(Post post) {
+        posts.add(post);
+    }
+
+    public Post getPostById(int id) {
+        return posts.get(id);
     }
 
     public List<Post> getAll() {

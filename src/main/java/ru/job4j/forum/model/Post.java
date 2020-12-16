@@ -1,7 +1,7 @@
 package ru.job4j.forum.model;
 
-
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 public class Post {
@@ -9,11 +9,21 @@ public class Post {
     private String name;
     private String desc;
     private Calendar created;
+    private List<Message> messages;
 
     public static Post of(String name) {
         Post post = new Post();
         post.name = name;
+        post.setCreated(Calendar.getInstance());
         return post;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void addMessage(Message message) {
+        messages.add(message);
     }
 
     public int getId() {
