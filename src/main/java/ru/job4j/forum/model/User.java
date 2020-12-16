@@ -1,14 +1,60 @@
 package ru.job4j.forum.model;
 
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(unique = true)
+    @NotNull
     private String username;
+
+    @NotNull
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
+
+    private boolean enabled;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -32,13 +78,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password);
+        return id == user.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password);
+        return Objects.hash(id);
     }
 
     @Override

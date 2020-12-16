@@ -1,30 +1,28 @@
 package ru.job4j.forum.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.User;
-
-import java.util.HashMap;
-import java.util.Map;
+import ru.job4j.forum.repository.AuthorityRepository;
+import ru.job4j.forum.repository.UserRepository;
 
 @Service
 public class UserService {
 
-    private final Map<String, User> users = new HashMap<>();
+    private final UserRepository userRepository;
+    private final AuthorityRepository authorityRepository;
+    private final PasswordEncoder encoder;
 
-    public UserService() {
-        users.put("admin", new User("admin", "123"));
+    public UserService(UserRepository userRepository, AuthorityRepository authorityRepository, PasswordEncoder encoder) {
+        this.userRepository = userRepository;
+        this.authorityRepository = authorityRepository;
+        this.encoder = encoder;
     }
 
     public void save(User user) {
-        users.put(user.getUsername(), user);
-    }
-
-    public boolean checkPassUser(User checkedUser) {
-        User user = users.get(checkedUser.getUsername());
-        if (user == null) {
-            return false;
-        }
-        return user.getUsername().equals(checkedUser.getUsername()) &&
-                user.getPassword().equals(checkedUser.getPassword());
+        user.setAuthority(authorityRepository.findByAuthority("ROLE_USER"));
+        user.setEnabled(true);
+        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 }

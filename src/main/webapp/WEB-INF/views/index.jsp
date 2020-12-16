@@ -24,6 +24,10 @@
                         </div>
                         <h2>Форум</h2>
                         <span>Здесь вы можете свободно общаться на интересные вам темы.</span>
+                        <div style="float:right; top:-20px;" class="alert alert-success">
+                            Добро пожаловать, <b>${username}! </b>
+                            <a href="/logout" class="link">Выйти</a>
+                        </div>
                     </div>
                 </div>
 

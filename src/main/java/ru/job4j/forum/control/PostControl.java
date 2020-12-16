@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.service.PostService;
 
+import java.security.Principal;
+
 @Controller
 public class PostControl {
     private final PostService postService;
@@ -15,8 +17,9 @@ public class PostControl {
     }
 
     @GetMapping("/post")
-    public String getPost(@RequestParam int id, Model model) {
+    public String getPost(@RequestParam int id, Model model, Principal principal) {
         model.addAttribute("post", postService.getPostById(id));
+        model.addAttribute("username", principal.getName());
         return "index";
     }
 }
