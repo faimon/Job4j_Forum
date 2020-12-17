@@ -23,7 +23,8 @@
                             <i class="fa fa-globe text-navy mid-icon"></i>
                         </div>
                         <h2>Форум</h2>
-                        <span>Здесь вы можете свободно общаться на интересные вам темы.</span>
+                        Здесь вы можете свободно общаться на интересные вам темы.
+                        <a href="/index" class="link text-center"> Главная </a>
                         <div style="float:right; top:-20px;" class="alert alert-success">
                             Добро пожаловать, <b>${username}! </b>
                             <a href="/logout" class="link">Выйти</a>
@@ -34,33 +35,23 @@
                 <div class="ibox-content forum-container">
 
                     <div class="forum-title">
-                        <h3>Темы</h3>
+                        <h3>${topic.name} <span style="float:right"><button type="button" class="btn btn-primary" onclick="window.location.href='/edit'">Создать тему</button></span></h3>
                     </div>
-                    <c:forEach var="topic" items="${topics}">
-                        <div class="forum-item active">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="forum-icon">
-                                        <i class="fa fa-shield"></i>
-                                    </div>
-                                    <a href="/post?id=${topic.id}" class="forum-item-title">${topic.name}</a>
-                                    <div class="forum-sub-title"> ${topic.description}
-                                    </div>
+                    <c:forEach var="post" items="${posts}">
+                    <div class="forum-item active">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="forum-icon">
+                                    <i class="fa fa-shield"></i>
                                 </div>
-                                <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                    ${fn:length(topic.posts)}
-                            </span>
-                                    <div>
-                                        <small>Тем</small>
-                                    </div>
-                                </div>
+                                <a href="/message?id=${post.id}" class="forum-item-title">${post.name}</a>
+                                Дата создания: ${post.created}
                             </div>
                         </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 </html>

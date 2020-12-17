@@ -43,7 +43,7 @@
                                     <div class="forum-icon">
                                         <i class="fa fa-shield"></i>
                                     </div>
-                                    <a href="/post?topic_id=${topic.id}" class="forum-item-title">${topic.name}</a>
+                                    <a href="/post?id=${topic.id}" class="forum-item-title">${topic.name}</a>
                                     <div class="forum-sub-title"> ${topic.description}
                                     </div>
                                 </div>

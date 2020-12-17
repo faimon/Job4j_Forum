@@ -2,28 +2,37 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.repository.PostRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Collection;
 
 @Service
 public class PostService {
+    private final PostRepository postRepository;
 
-    private final List<Post> posts = new ArrayList<>();
-
-    public PostService() {
-        posts.add(Post.of("Правила форума."));
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
     public void addPost(Post post) {
-        posts.add(post);
+        post.setCreated(LocalDate.now());
+        postRepository.save(post);
     }
 
     public Post getPostById(int id) {
-        return posts.get(id);
+        return postRepository.findById(id).get();
     }
 
-    public List<Post> getAll() {
-        return posts;
+    public Collection<Post> getAll() {
+        return (Collection<Post>) postRepository.findAll();
+    }
+
+    public Post findPostById(int id) {
+        return postRepository.findById(id).get();
+    }
+
+    public Collection<Post> findAllPostByTopicId(int topicId) {
+        return postRepository.findPostsByTopicId(topicId);
     }
 }

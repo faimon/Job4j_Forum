@@ -35,36 +35,22 @@
                 <div class="ibox-content forum-container">
 
                     <div class="forum-title">
-                        <h3>Создать тему</h3>
+                        <h3>Тема: ${post.name}</h3>
                     </div>
-                    <form class="form-horizontal" action="<c:url value='/edit'/>"
-                          method="post">
-                        <fieldset>
-
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    <input id="name" type="text" name="name" value="" placeholder="Заголовок темы"
-                                           class="form-control input-md">
+                    <c:forEach var="message" items="${messages}">
+                        <div class="card">
+                            <h6 class="card-subtitle text-muted pt-3 ml-3">
+                                Пользователь: <b>${message.username} </b>
+                                <div style="float:right" class="mr-3">
+                                Дата создания: <b>${message.created}</b>
                                 </div>
+                            </h6>
+                            <div class="card-body">
+                                    ${message.text}
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    <textarea class="form-control" id="textarea" name="description"
-                                              placeholder="Текст сообщения"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="singlebutton"></label>
-                                <div class="col-md-4">
-                                    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">
-                                        Создать тему
-                                    </button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
