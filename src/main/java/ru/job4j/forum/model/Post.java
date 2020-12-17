@@ -1,29 +1,35 @@
 package ru.job4j.forum.model;
 
-import java.util.Calendar;
-import java.util.List;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String desc;
-    private Calendar created;
-    private List<Message> messages;
+    private String description;
+    private LocalDate created;
+
+    @ManyToOne
+    private Topic topic;
 
     public static Post of(String name) {
         Post post = new Post();
         post.name = name;
-        post.setCreated(Calendar.getInstance());
+        post.setCreated(LocalDate.now());
         return post;
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public Topic getTopic() {
+        return topic;
     }
 
-    public void addMessage(Message message) {
-        messages.add(message);
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public int getId() {
@@ -42,19 +48,19 @@ public class Post {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Calendar getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(Calendar created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
@@ -63,14 +69,20 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return id == post.id &&
-                Objects.equals(name, post.name) &&
-                Objects.equals(desc, post.desc) &&
-                Objects.equals(created, post.created);
+        return id == post.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, desc, created);
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created + '}';
     }
 }

@@ -43,16 +43,8 @@
                                     <div class="forum-icon">
                                         <i class="fa fa-shield"></i>
                                     </div>
-                                    <a href="/post?id=${topic.id}" class="forum-item-title">${topic.name}</a>
-                                    <div class="forum-sub-title"> ${topic.desc}
-                                    </div>
-                                </div>
-                                <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                    ${fn:length(topic.posts)}
-                            </span>
-                                    <div>
-                                        <small>Тем</small>
+                                    <a href="/post?topic_id=${topic.id}" class="forum-item-title">${topic.name}</a>
+                                    <div class="forum-sub-title"> ${topic.description}
                                     </div>
                                 </div>
                             </div>

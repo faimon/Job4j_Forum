@@ -24,13 +24,17 @@
                         </div>
                         <h2>Форум</h2>
                         <span>Здесь вы можете свободно общаться на интересные вам темы.</span>
+                        <div style="float:right; top:-20px;" class="alert alert-success">
+                            Добро пожаловать, <b>${username}! </b>
+                            <a href="/logout" class="link">Выйти</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="ibox-content forum-container">
 
                     <div class="forum-title">
-                        <h3>Разделы форума</h3>
+                        <h3>Темы</h3>
                     </div>
                     <c:forEach var="topic" items="${topics}">
                         <div class="forum-item active">
@@ -40,7 +44,7 @@
                                         <i class="fa fa-shield"></i>
                                     </div>
                                     <a href="/post?id=${topic.id}" class="forum-item-title">${topic.name}</a>
-                                    <div class="forum-sub-title"> ${topic.desc}
+                                    <div class="forum-sub-title"> ${topic.description}
                                     </div>
                                 </div>
                                 <div class="col-md-1 forum-info">

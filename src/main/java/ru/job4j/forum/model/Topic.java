@@ -1,22 +1,24 @@
 package ru.job4j.forum.model;
 
-import java.util.List;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "topics")
 public class Topic {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String desc;
-    private List<Post> posts;
+    private String description;
 
-    public Topic(int id, String name, String desc) {
+    public Topic(int id, String name, String description) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
+        this.description = description;
     }
 
-    public void addPost(Post post) {
-        posts.add(post);
+    public Topic() {
     }
 
     public int getId() {
@@ -35,20 +37,12 @@ public class Topic {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -56,14 +50,12 @@ public class Topic {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Topic topic = (Topic) o;
-        return Objects.equals(name, topic.name) &&
-                Objects.equals(desc, topic.desc) &&
-                Objects.equals(posts, topic.posts);
+        return id == topic.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, desc, posts);
+        return Objects.hash(id);
     }
 
     @Override
@@ -71,8 +63,7 @@ public class Topic {
         return "Topic{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
-                ", posts=" + posts +
+                ", desc='" + description + '\'' +
                 '}';
     }
 }

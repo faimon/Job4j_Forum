@@ -1,18 +1,38 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Objects;
 
+@Entity
+@Table(name = "messages")
 public class Message {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String text;
     private String username;
-    private Calendar created;
+    private LocalDate created;
+
+    @ManyToOne
+    private Post post;
 
     public Message(String text, String username) {
         this.text = text;
         this.username = username;
-        this.created = Calendar.getInstance();
+        this.created = LocalDate.now();
+    }
+
+    public Message() {
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public int getId() {
@@ -39,11 +59,11 @@ public class Message {
         this.username = username;
     }
 
-    public Calendar getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(Calendar created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
