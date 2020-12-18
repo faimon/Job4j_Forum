@@ -1,5 +1,5 @@
 # Проект "Форум"
-
+[![Build Status](https://travis-ci.org/faimon/Job4j_Forum.svg?branch=master)](https://travis-ci.org/faimon/Job4j_Forum)
 ### Web приложение, где люди могут общаться на интересные им темы.
 **Функциональность:**
 * Авторизация и регистрация пользователя.
