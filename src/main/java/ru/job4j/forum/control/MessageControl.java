@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Message;
 import ru.job4j.forum.service.MessageService;
 import ru.job4j.forum.service.PostService;
-import ru.job4j.forum.service.TopicService;
 
 import java.security.Principal;
 
@@ -17,12 +16,10 @@ import java.security.Principal;
 public class MessageControl {
     private final PostService postService;
     private final MessageService messageService;
-    private final TopicService topicService;
 
-    public MessageControl(PostService postService, MessageService messageService, TopicService topicService) {
+    public MessageControl(PostService postService, MessageService messageService) {
         this.postService = postService;
         this.messageService = messageService;
-        this.topicService = topicService;
     }
 
     @GetMapping("/message")
