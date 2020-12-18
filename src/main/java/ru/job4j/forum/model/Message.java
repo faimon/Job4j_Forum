@@ -21,7 +21,6 @@ public class Message {
     public Message(String text, String username) {
         this.text = text;
         this.username = username;
-        this.created = LocalDate.now();
     }
 
     public Message() {
@@ -80,5 +79,15 @@ public class Message {
     @Override
     public int hashCode() {
         return Objects.hash(id, text, username);
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", username='" + username + '\'' +
+                ", created=" + created +
+                '}';
     }
 }

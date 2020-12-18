@@ -3,6 +3,7 @@ package ru.job4j.forum.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.repository.PostRepository;
+import ru.job4j.forum.repository.TopicRepository;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -10,12 +11,15 @@ import java.util.Collection;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final TopicRepository topicRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, TopicRepository topicRepository) {
         this.postRepository = postRepository;
+        this.topicRepository = topicRepository;
     }
 
-    public void addPost(Post post) {
+    public void addPost(Post post, int topic_id) {
+        post.setTopic(topicRepository.findById(topic_id).get());
         post.setCreated(LocalDate.now());
         postRepository.save(post);
     }

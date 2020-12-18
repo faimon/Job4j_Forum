@@ -37,21 +37,28 @@
                     <div class="forum-title">
                         <h3>Создать тему</h3>
                     </div>
-                    <form class="form-horizontal" action="<c:url value='/edit'/>"
+                    <form class="form-horizontal" action="<c:url value='/edit?topic_id=${topicid}'/>"
                           method="post">
                         <fieldset>
 
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <input id="name" type="text" name="name" value="" placeholder="Заголовок темы"
+                                    <input id="name" type="text" name="name" placeholder="Заголовок темы"
                                            class="form-control input-md">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <textarea class="form-control" id="textarea" name="description"
+                                    <textarea class="form-control" name="text"
                                               placeholder="Текст сообщения"></textarea>
+                                </div>
+                            </div>
+
+                            <div hidden class="form-group">
+                                <div class="col-md-4">
+                                    <textarea class="form-control" name="username"
+                                    >${username}</textarea>
                                 </div>
                             </div>
 

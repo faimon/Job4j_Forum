@@ -51,6 +51,34 @@
 
                         </div>
                     </c:forEach>
+                    <form class="form-horizontal pt-2" action="<c:url value='/message?postId=${post.id}'/>"
+                          method="post">
+                        <fieldset>
+
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <textarea class="form-control" name="text"
+                                              placeholder="Текст сообщения"></textarea>
+                                </div>
+                            </div>
+
+                            <div hidden class="form-group">
+                                <div class="col-md-4">
+                                    <textarea class="form-control" name="username"
+                                    >${username}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton"></label>
+                                <div class="col-md-4">
+                                    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">
+                                        Добавить сообщение
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>

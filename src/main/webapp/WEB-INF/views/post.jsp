@@ -35,7 +35,7 @@
                 <div class="ibox-content forum-container">
 
                     <div class="forum-title">
-                        <h3>${topic.name} <span style="float:right"><button type="button" class="btn btn-primary" onclick="window.location.href='/edit'">Создать тему</button></span></h3>
+                        <h3>${topic.name} <span style="float:right"><button type="button" class="btn btn-primary" onclick="window.location.href='/edit?topic_id=${topic.id}'">Создать тему</button></span></h3>
                     </div>
                     <c:forEach var="post" items="${posts}">
                     <div class="forum-item active">
