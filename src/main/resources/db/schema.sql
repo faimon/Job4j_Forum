@@ -38,12 +38,3 @@ CREATE TABLE users
     enabled      boolean default true,
     authority_id int          not null references authorities (id)
 );
-
-insert into authorities (authority)
-values ('ROLE_USER');
-insert into authorities (authority)
-values ('ROLE_ADMIN');
-
-insert into users (username, password, enabled, authority_id)
-values ('admin', '$2a$10$wY1twJhMQjGVxv4y5dBC5ucCBlzkzT4FIGa4FNB/pS9GaXC2wm9/W', true,
-        (select id from authorities where authority = 'ROLE_ADMIN'));
