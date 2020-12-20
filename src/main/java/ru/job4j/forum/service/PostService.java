@@ -33,7 +33,7 @@ public class PostService {
     }
 
     public Post findPostById(int id) {
-        return postRepository.findById(id).get();
+        return postRepository.findById(id).orElse(null);
     }
 
     public Collection<Post> findAllPostByTopicId(int topicId) {
