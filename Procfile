@@ -1,0 +1,1 @@
+web: java -jar target/Job4j_Forum.jar --spring.config.location=heroku.properties
