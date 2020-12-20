@@ -61,7 +61,7 @@ public class PostControlTest {
     @WithMockUser
     public void getPost() throws Exception {
         this.mockMvc.perform(get("/post")
-                .param("id", "1"))
+                .param("id", "2"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("post"));
