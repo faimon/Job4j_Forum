@@ -24,6 +24,6 @@ public class TopicService {
     }
 
     public Topic findTopicById(int id) {
-        return topicRepository.findById(id).get();
+        return topicRepository.findById(id).orElse(null);
     }
 }
